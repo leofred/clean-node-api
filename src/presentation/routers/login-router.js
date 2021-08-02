@@ -1,4 +1,4 @@
-import { serverError, badRequest } from '../helpers/http-response'
+import { serverError, badRequest, unauthorizedError } from '../helpers/http-response'
 
 module.exports = class LoginRouter {
   constructor (authUseCase) {
@@ -17,8 +17,6 @@ module.exports = class LoginRouter {
       return badRequest('password')
     }
     this.authUseCase.auth(email, password)
-    return {
-      statusCode: 401
-    }
+    return unauthorizedError()
   }
 }
