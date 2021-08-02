@@ -1,7 +1,5 @@
 {
-  "lint-staged": {
-    "*.js": [
-      "standard --fix"
-    ]
-  }
+  "*.js": [
+    "standard --fix"
+  ]
 }

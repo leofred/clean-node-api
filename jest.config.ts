@@ -5,6 +5,5 @@
 
 export default {
   collectCoverage: true,
-  coverageDirectory: 'coverage',
-  testEnviroment: 'node'
+  coverageDirectory: 'coverage'
 }
