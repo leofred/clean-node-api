@@ -3,7 +3,7 @@
  * https://jestjs.io/docs/configuration
  */
 
-export default {
-  collectCoverage: true,
+module.exports = {
+  // collectCoverage: true,
   coverageDirectory: 'coverage'
 }
