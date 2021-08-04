@@ -1,8 +1,10 @@
 import { serverError, badRequest, unauthorizedError, ok } from '../helpers/http-response'
 import MissingParamError from '../helpers/missing-param-error'
+import InvalidParamError from '../helpers/invalid-param-error'
 class LoginRouter {
-  constructor (authUseCase) {
+  constructor (authUseCase, emailValidator) {
     this.authUseCase = authUseCase
+    this.emailValidator = emailValidator
   }
 
   async route (httpRequest) {
@@ -10,6 +12,9 @@ class LoginRouter {
       const { email, password } = httpRequest.body
       if (!email) {
         return badRequest(new MissingParamError('email'))
+      }
+      if (!this.emailValidator.isValid(email)) {
+        return badRequest(new InvalidParamError('email'))
       }
       if (!password) {
         return badRequest(new MissingParamError('password'))
