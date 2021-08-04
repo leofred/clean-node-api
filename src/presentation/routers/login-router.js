@@ -1,12 +1,12 @@
 import { serverError, badRequest, unauthorizedError } from '../helpers/http-response'
 
-module.exports = class LoginRouter {
+class LoginRouter {
   constructor (authUseCase) {
     this.authUseCase = authUseCase
   }
 
   route (httpRequest) {
-    if (!httpRequest || !httpRequest.body) {
+    if (!httpRequest || !httpRequest.body || !this.authUseCase || !this.authUseCase.auth) {
       return serverError()
     }
     const { email, password } = httpRequest.body
@@ -20,3 +20,5 @@ module.exports = class LoginRouter {
     return unauthorizedError()
   }
 }
+
+module.exports = { LoginRouter }
