@@ -1,4 +1,4 @@
-import { serverError, badRequest, unauthorizedError } from '../helpers/http-response'
+import { serverError, badRequest, unauthorizedError, ok } from '../helpers/http-response'
 
 class LoginRouter {
   constructor (authUseCase) {
@@ -16,8 +16,9 @@ class LoginRouter {
     if (!password) {
       return badRequest('password')
     }
-    this.authUseCase.auth(email, password)
-    return unauthorizedError()
+    const accessToken = this.authUseCase.auth(email, password)
+    if (!accessToken) return unauthorizedError()
+    return ok()
   }
 }
 
