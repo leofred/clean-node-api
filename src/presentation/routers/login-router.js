@@ -18,7 +18,7 @@ class LoginRouter {
     }
     const accessToken = this.authUseCase.auth(email, password)
     if (!accessToken) return unauthorizedError()
-    return ok()
+    return ok({ accessToken })
   }
 }
 
