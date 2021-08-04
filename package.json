@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --watch --silent --colors --noStackTrace",
-    "test:staged": "jest --passWithNoTests --findRealatedTests --silent --noStackTrace",
-    "test:ci": "jest --coverage --noStackTrace --silent",
+    "test": "jest --silent --colors --noStackTrace --passWithNoTests",
+    "test:unit": "npm test -- --watch",
+    "test:staged": "npm test -- --findRealatedTests",
+    "test:ci": "npm test -- --coverage",
     "prepare": "husky install"
   },
   "standard": {
