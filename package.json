@@ -29,6 +29,7 @@
     "ts-node": "^10.1.0"
   },
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "validator": "^13.6.0"
   }
 }
