@@ -13,8 +13,11 @@ export default class AuthUseCase {
 
     const user = await this.loadUserByEmailRepository.load(email)
     if (!user) return null
+
     const isValid = await this.encrypter.compare(password, user.password)
     if (!isValid) return null
-    await this.tokenGenerator.generate(user.id)
+
+    const accessToken = await this.tokenGenerator.generate(user.id)
+    return accessToken
   }
 }
