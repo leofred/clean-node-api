@@ -1,8 +1,9 @@
 import { MissingParamError } from '../../utils/errors'
 
 export default class AuthUseCase {
-  constructor ({ loadUserByEmailRepository, encrypter, tokenGenerator } = {}) {
+  constructor ({ loadUserByEmailRepository, updateAccessTokenRepository, encrypter, tokenGenerator } = {}) {
     this.loadUserByEmailRepository = loadUserByEmailRepository
+    this.updateAccessTokenRepository = updateAccessTokenRepository
     this.encrypter = encrypter
     this.tokenGenerator = tokenGenerator
   }
@@ -16,6 +17,7 @@ export default class AuthUseCase {
     if (!isValid) return null
 
     const accessToken = await this.tokenGenerator.generate(user.id)
+    await this.updateAccessTokenRepository.update(user.id, accessToken)
     return accessToken
   }
 }
