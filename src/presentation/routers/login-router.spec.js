@@ -1,8 +1,5 @@
 import { LoginRouter } from './login-router'
-import ServerError from '../helpers/server-error'
-import UnauthorizedError from '../helpers/unauthorized-error'
-import MissingParamError from '../helpers/missing-param-error'
-import InvalidParamError from '../helpers/invalid-param-error'
+import { UnauthorizedError, ServerError, MissingParamError, InvalidParamError } from '../errors'
 
 const makeSut = () => {
   const authUseCaseSpy = makeAuthUseCase()

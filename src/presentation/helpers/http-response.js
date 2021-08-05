@@ -1,5 +1,4 @@
-import UnauthorizedError from './unauthorized-error'
-import ServerError from './server-error'
+import { UnauthorizedError, ServerError } from '../errors'
 
 module.exports = class HttpResponse {
   static badRequest (error) {
