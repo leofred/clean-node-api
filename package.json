@@ -21,6 +21,7 @@
   "devDependencies": {
     "@babel/core": "^7.14.8",
     "@babel/preset-env": "^7.14.9",
+    "@shelf/jest-mongodb": "^2.0.1",
     "babel-jest": "^27.0.6",
     "husky": "^7.0.1",
     "jest": "^27.0.6",
@@ -31,6 +32,7 @@
   "dependencies": {
     "bcrypt": "^5.0.1",
     "jsonwebtoken": "^8.5.1",
+    "mongodb": "^4.1.0",
     "validator": "^13.6.0"
   }
 }
