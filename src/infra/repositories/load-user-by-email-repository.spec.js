@@ -1,5 +1,5 @@
 import MongoHelper from '../helpers/mongo-helper'
-import LoadUserByEmailRepository from './load-user-by-email'
+import LoadUserByEmailRepository from './load-user-by-email-repository'
 let db
 
 const makeSut = () => {
