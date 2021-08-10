@@ -1,16 +1,6 @@
-import { MongoClient } from 'mongodb'
-let client, db
-
-class LoadUserByEmailRepository {
-  constructor (userModel) {
-    this.userModel = userModel
-  }
-
-  async load (email) {
-    const user = await this.userModel.findOne({ email }, { projection: { password: 1 } })
-    return user || null
-  }
-}
+import MongoHelper from '../helpers/mongo-helper'
+import LoadUserByEmailRepository from './load-user-by-email'
+let db
 
 const makeSut = () => {
   const userModel = db.collection('users')
@@ -23,11 +13,8 @@ const makeSut = () => {
 
 describe('LoadUserByEmail Repository', () => {
   beforeAll(async () => {
-    client = await MongoClient.connect(process.env.MONGO_URL, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true
-    })
-    db = await client.db()
+    await MongoHelper.connect(process.env.MONGO_URL)
+    db = await MongoHelper.getDb()
   })
 
   beforeEach(async () => {
@@ -35,7 +22,7 @@ describe('LoadUserByEmail Repository', () => {
   })
 
   afterAll(async () => {
-    await client.close()
+    await MongoHelper.disconnect()
   })
 
   test('Should return null if no user is found', async () => {
