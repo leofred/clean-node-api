@@ -1,4 +1,4 @@
-import { MongoClient } from 'mongodb'
+const { MongoClient } = require('mongodb')
 
 module.exports = {
   async connect (uri, dbName) {
